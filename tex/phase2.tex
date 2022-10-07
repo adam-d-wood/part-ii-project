@@ -1,23 +1,116 @@
 \documentclass{article}
-\title{Project Proposal - Phase 2}
+\title{    
+    Project Proposal - Phase 2 \\
+    A Compositional Approach to Annotate Near-Side Pragmatics
+
+    }
 \author{Adam Wood}
 \begin{document}
 \maketitle
 
+\large Originator: Dr. Weiwei Sun
+
+
 \section{Introduction}
 
-For many natural language processing applications, it is necessary to parse natural language sentences into intermediate representations of meaning. 
-
-A common task in natural language processing is to parse a natural language sentence into an intermediary represenation which encapsulates the syntax and, possibly, the semantics of the sentence. For encoding the syntactic structure of a sentence, tree based representations are generally sufficiently expressive. However, 
+A common task in natural language understanding (NLU) is to parse a natural language utterance into an intermediary represenation which encapsulates the syntax and, possibly, the semantics of the utternace. For encoding the syntactic structure of a sentence, tree based representations are generally sufficiently expressive. However, when modelling meaning, a more general structure may be desirable. For example, an argument may be shared by multiple predicates and some surface tokens may not contribute to the meaning of the utterance. Flexibility to express such phenomena is provided by graph based meaning representations, `semantic graphs'. This project focuses on the graph based approach to representing meaning. 
 
 \subsection{Beyond Syntactico-Semantics}
 
-For many NLU applications, it is useful to parse utterances into a logical form resembling first order logic. However, various logical phenomena such as quantifier scope, negation, and modality lie outside the realm of semantics and, as such, are not captured by semantic graph representations. Therefore, for logic based applications, semantic graphs must be extended beyond syntactico-semantics to capture these extra semantic phenomena, which are considered part of near-side pragmatics.
+For many NLU applications, it is useful to parse utterances into a logical form resembling first order logic. However, various logical phenomena such as quantifier scope, negation, and modality lie outside the realm of semantics and, as such, are not captured by semantic graph representations. Therefore, for logic based applications, semantic graphs must be extended beyond syntactico-semantics to capture these extra semantic phenomena, which are considered part of near-side pragmatics. A core aim of this project is to build a parser to parse natural language utterances into a meaning representation which captures these scopal phenomena.
 
 \subsection{Annotation Tools}
 
-In order to build accurate statistical parsers which can parse to the extended logico-semantic graph representation described above
+In order to build accurate statistical parsers which can parse to the extended logico-semantic graph representation described above, a large dataset of manually annnotated sentences is necessary. In the context of semantic parsing, such a dataset is called a `sembank'. However, manually annotating a sufficiently large set of utterances is very time consuming for linguists. Therefore, in order to speed up the manual annotation process, annotation tools can make use of automatic parsers which produce an initial parse, which the human annotator need only check and modify. The overarching aim of this project is to build such an annotation tool to accelerate the process of manual annotation.
 
-\subsection{Graph Based Meaning Representation}
+\subsection{Hyperedge Replacement Grammars}
+
+The approach to semantic parsing used in this project will be based on synchronous hyperedge replacement grammars (SHRG). Hyperedge replacement grammars (HRG) are a family of hypergraph grammars which use (hyper)edge replacement as the rewriting operation by which new hypergraphs can be generated, in accordance with the production rules of the grammar. The production rules of an HRG are constrained to be context free.
+
+In a synchronous HRG, there is a mapping between the HRG and a context free string grammar, where both grammars share a set of nonterminal symbols $N$. For each production rule $A \rightarrow R$, where $A \in N$ and $R$ is a sequence of terminals and nonterminals in the hypergraph grammar, there is a corresponding rule $A \rightarrow R'$, where $R'$ is a sequence of terminals and nonterminals in the string grammar. In addition, each production rule specifies an explicit mapping between nonterminals in $R$ and nonterminals in $R'$. Using this mapping, a derivation in the context free string grammar can be translated into a derivation of a semantic graph. This approach splits semantic parsing into two stages: an initial syntactic parse, and a subsequent semantic interpretation of the syntax tree.
+
+\section{Computing Resources}
+
+I will use my own computer for development, which has the following specs:
+\begin{itemize}
+    \item CPU: Intel Core i7-8550U @ 1.80GHz × 8
+    \item Memory: 16GB
+    \item Running Ubuntu 20.04.4
+\end{itemize}
+The main software requirements are:
+\begin{itemize}
+    \item Node.js as a JavaScript runtime
+    \item TypeScript compiler
+    \item Git for version control
+\end{itemize}
+
+\section{Timetable}
+
+I propose to divide the work into 10 two week work packages. The first 3 packages will be in Michaelmas and will consist of preperatory work.
+
+\subsection*{Michaelmas Weeks 3, 4, 5, 6}
+Gain familiary with the literature in the following areas.
+\begin{itemize}
+    \item English Resource Semantics
+    \item Grammar induction
+    \item Hyperedge Replacement Grammar
+\end{itemize}
+
+
+\subsection*{Michaelmas Weeks 6-8}
+Gain familiary with the literature in the following areas.
+\begin{itemize}
+    \item SemBanking
+    \item Grammar Extraction
+    \item Neural Classification
+    \item Online Expectation-Maximisation
+\end{itemize} 
+
+\subsection*{Christmas Vacation}
+\begin{itemize}
+    \item Implementation of grammar extraction algorithm
+\end{itemize}
+
+\subsection*{Lent Weeks 1 \& 2}
+\begin{itemize}
+    \item Finalise grammar extraction
+    \item Implement syntactic parser
+    \item Begin implementation of semantic interpretation algorithm
+\end{itemize}
+
+\subsection*{Lent Weeks 3 \& 4}
+\begin{itemize}
+    \item Complete implementation of SHRG parser
+\end{itemize}
+
+\subsection*{Lent Weeks 5 \& 6}
+\begin{itemize}
+    \item Progress report
+    \item Implement front-end of annotation tool
+\end{itemize}
+
+\subsection*{Lent Weeks 7 \& 8}
+\begin{itemize}
+    \item Writeup of dissertation
+\end{itemize}
+
+\subsection*{Easter Vacation}
+\begin{itemize}
+    \item Writeup of dissertation
+    \item Evaluation
+\end{itemize}
+
+\subsection*{Easter Weeks 1 \& 2}
+\begin{itemize}
+    \item Finish Writeup
+    \item Proofreading
+\end{itemize}
+
+
+
+
+
+
+
 
 \end{document}
